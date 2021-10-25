@@ -191,7 +191,7 @@ function.
 const MyComponent = () => {
   const [data, setData] = useState()
   // You can't do this! It's a side effect!
-  const response = fetch(url)
+  fetch(url)
     .then((response) => response.json())
     .then((data) => setData(data))
 }
