@@ -22,7 +22,7 @@
     - [the _set_ function can _optionally_ take a callback function](#the-set-function-can-optionally-take-a-callback-function)
   - [useEffect Hook](#useeffect-hook)
     - [Components must be PURE functions](#components-must-be-pure-functions)
-    - [Don't call the `set` function of useState inside a component.](#dont-call-the-set-function-of-usestate-inside-a-component)
+    - [Don't call the `set` function of useState inside a component](#dont-call-the-set-function-of-usestate-inside-a-component)
     - [useEffect takes a callback as it's first argument, and a dependency array as it's second argument](#useeffect-takes-a-callback-as-its-first-argument-and-a-dependency-array-as-its-second-argument)
     - [The dependency array](#the-dependency-array)
     - [Do use useEffect for side effects](#do-use-useeffect-for-side-effects)
@@ -265,7 +265,7 @@ const MyComponent = () => {
 }
 ```
 
-### Don't call the `set` function of useState inside a component.
+### Don't call the `set` function of useState inside a component
 
 It should always be called in a useEffect or in an event handler.
 
@@ -362,7 +362,6 @@ The use context hook is used along with a context to pass data deeply into
 a React component tree.
 
 ![context_diagram](https://beta.reactjs.org/images/docs/sketches/s_providing-context.png)
-
 
 ### Creating a context
 
