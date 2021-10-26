@@ -173,7 +173,7 @@ It gets passed the previous state value as the first argument.
 ```jsx
 const [count, setCount] = useState(0)
 
-setState((prevState) => {
+setCount((prevState) => {
   return count + 1
 })
 ```
