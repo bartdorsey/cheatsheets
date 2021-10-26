@@ -30,6 +30,10 @@
   - [Event Handling in React](#event-handling-in-react)
     - [Events are added to JSX and passed a callback](#events-are-added-to-jsx-and-passed-a-callback)
     - [Don't call the function in the onClick attribute](#dont-call-the-function-in-the-onclick-attribute)
+  - [useContext Hook](#usecontext-hook)
+    - [Creating a context](#creating-a-context)
+      - [Providing data from a component to the context](#providing-data-from-a-component-to-the-context)
+      - [using the useContext hook](#using-the-usecontext-hook)
   - [Forms](#forms)
     - [Make your forms controlled components](#make-your-forms-controlled-components)
     - [Use an onSubmit event on the form tag and remember to prevent default behavior](#use-an-onsubmit-event-on-the-form-tag-and-remember-to-prevent-default-behavior)
@@ -77,6 +81,8 @@ Then edit `package.json` and add the following lines:
   },
 ```
 
+---
+
 ## Bootstrapping the React app
 
 ```jsx
@@ -90,6 +96,8 @@ ReactDOM.render(
   document.getElementById("app")
 );
 ```
+
+---
 
 ## JSX
 
@@ -344,6 +352,70 @@ return <button onClick={handleClick}>Click Me!</button>
 // This will run the handleClick right away, instead of waiting
 // for the click to happen.
 return <button onClick={handleClick()}>Click Me!</button>
+```
+
+---
+
+## useContext Hook
+
+The use context hook is used along with a context to pass data deeply into
+a React component tree.
+
+![context_diagram](https://beta.reactjs.org/images/docs/sketches/s_providing-context.png)
+
+
+### Creating a context
+
+```jsx
+import { createContext } from 'react'
+
+const myContext = createContext();
+
+export default myContext;
+```
+
+#### Providing data from a component to the context
+
+```jsx
+import myContext from './myContext.js';
+
+const AncestorComponent = () => {
+  // Often we'll use useState or useReducer to store the actual state here
+  const [message, setMessage] = useState('Hello World');
+
+  // Then make an object to assign to the provider's value attribute
+  const contextValue = {
+    message,
+    setMessage
+  };
+
+  // We are wrapping this around <App> but contexts could
+  // live at any point in the tree.
+  return (
+    <myContext.Provider value={contextValue}>
+      <App/> 
+    </myContext.Provider>    
+  )
+}
+```
+
+#### using the useContext hook
+
+This lets us access whatever we stored in the context's provider's value attribute
+
+```jsx
+import { useContext } from 'react';
+import myContext from './myContext.js';
+
+const SomeDescendantComponent = () => {
+  const contextValue = useContext(myContext);
+
+  const { message, setMessage } = contextValue;
+
+  return (
+    <p>{message}</p>
+  );
+}
 ```
 
 ---
