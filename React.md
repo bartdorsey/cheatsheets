@@ -1,6 +1,11 @@
 # React CheatSheet
 
 - [React CheatSheet](#react-cheatsheet)
+  - [Creating a new React App](#creating-a-new-react-app)
+    - [Using Create React App](#using-create-react-app)
+      - [Using a minimal template](#using-a-minimal-template)
+      - [Doing CRA from scratch with react-scripts](#doing-cra-from-scratch-with-react-scripts)
+  - [Bootstrapping the React app](#bootstrapping-the-react-app)
   - [JSX](#jsx)
     - [JSX is really React.createElement](#jsx-is-really-reactcreateelement)
     - [Use curly braces to evaluate a javascript _expression_](#use-curly-braces-to-evaluate-a-javascript-expression)
@@ -28,8 +33,63 @@
   - [Forms](#forms)
     - [Make your forms controlled components](#make-your-forms-controlled-components)
     - [Use an onSubmit event on the form tag and remember to prevent default behavior](#use-an-onsubmit-event-on-the-form-tag-and-remember-to-prevent-default-behavior)
+  - [Using CSS with React](#using-css-with-react)
+    - [Doing a plain import](#doing-a-plain-import)
+    - [Using a CSS Module](#using-a-css-module)
+  - [Importing Images](#importing-images)
 
 ---
+
+## Creating a new React App
+
+### Using Create React App
+
+```shell
+npx create-react-app --use-npm <name of project>
+```
+
+#### Using a minimal template
+
+This uses a [minimal template by iansu on github](https://github.com/iansu/cra-minimal-templates)
+
+```shell
+npx create-react-app --use-npm --template minimal <name of project>
+```
+
+#### Doing CRA from scratch with react-scripts
+
+```shell
+mkdir <name of project>
+cd <name of project>
+npm init -y
+npm install -D react-scripts
+npm install react react-dom
+```
+
+Then edit `package.json` and add the following lines:
+
+```json
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+```
+
+## Bootstrapping the React app
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App/>
+  </React.StrictMode>,
+  document.getElementById("app")
+);
+```
 
 ## JSX
 
@@ -323,4 +383,49 @@ return (
     ...
     </form>
 )
+```
+
+## Using CSS with React
+
+### Doing a plain import
+
+This will just add the css file in a `<style>` tag in the `<head>` of your HTML.
+
+```jsx
+import "styles.css";
+```
+
+### Using a CSS Module
+
+`styles` will be an object full of css class names.
+
+```css
+.heading { 
+  font-size: 12pt;
+}
+```
+
+```jsx
+import styles from 'styles.css';
+```
+
+You can then use then on your JSX markup as the className.
+
+```jsx
+<h1 className={styles.heading}>Heading 1</h1>
+```
+
+React will generate random CSS classnames guaranteed to not
+conflict with styles from other components.
+
+## Importing Images
+
+You can import any image file supported on the web: `jpg`, `png`, or `svg`.
+Then just use it on the `src` attribute of an image tag.
+
+```jsx
+import image from 'imageFile.jpg';
+
+// Then in your JSX
+<img src={image}/>
 ```
