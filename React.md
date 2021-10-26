@@ -160,7 +160,7 @@ only queues up a change, it doesn't happen right away.
 const [count, setCount] = useState(0)
 
 // ...later in the component
-setState(count + 1)
+setCount(count + 1)
 console.log(count) // this will still be 0.
 // On the next render, count will be 1.
 ```
