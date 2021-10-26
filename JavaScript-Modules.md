@@ -2,7 +2,7 @@
 
 ## Chart
 
-| -                        | ES6 Modules                                             | Common JS Modules                                       |
+| -                        | ES Modules                                             | Common JS Modules                                       |
 | ------------------------ | ------------------------------------------------------- | ------------------------------------------------------- |
 | default export           | `export default <something>`                            | `module.exports = <something>`                          |
 | named export             | `export <something>`                                    | `module.exports = { <somename>: <something> }`          |
@@ -32,7 +32,7 @@ const variable = require("module"); // Importing a single thing
 const { key } = require("module"); // Importing a thing from the exported object using destructuring
 ```
 
-### ES6 Modules
+### ES Modules
 
 #### exports 
 
